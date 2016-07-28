@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="en" ng-app="tunely">
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -18,14 +19,62 @@
     <!-- APPLICATION SCRIPTS -->
     <script src="/scripts/app.js"></script>
 
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="jumbotron">
-      <div class="container">
-        <h1>Welcome to tunely</h1>
-        <p>Your music binder!</p>
-      </div>
+        <div class="container">
+            <h1>Welcome to tunely</h1>
+            <p>Your music binder!</p>
+        </div>
     </div>
-  </body>
+
+    <div class="container" ng-controller="AlbumsIndexController as albumsIndexCtrl">
+
+        <!-- <table class="table table-bordered table-striped"> -->
+            <tr>
+                <td>
+                    <!-- <p> {{albumsIndexCtrl.newAlbum.artistName}}</p> -->
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <!-- <p><b>Album:</b> {{albumsIndexCtrl.newAlbum.name}}</p> -->
+                </td>
+            </tr>
+        </table>
+
+        <input type="text" class="form-control" placeholder="New album name" ng-model="searchText">
+        <br>
+        <input type="text" class="form-control" placeholder="New album artist" ng-model="searchText">
+        <br>
+
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Artist</th>
+                  <th>Album</th>
+                </tr>
+                <tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="albums in albumsIndexCtrl.albums | orderBy: 'name' | filter:searchText ">
+                  <td>
+                      <p>{{albums.artistName}}</p>
+                  </td>
+                    <td>
+                        <p>{{albums.name}}</p>
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+
+
+
+
+    </div>
+
+</body>
 
 </html>
